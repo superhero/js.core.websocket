@@ -13,14 +13,15 @@
   "scripts": {
     "prepublishOnly": "npm run-script generate-doc-coverage && npm run-script generate-doc-tests",
     "generate-doc-coverage": "nyc report --reporter=html --report-dir=./docs/coverage",
-    "generate-doc-tests": "mocha './{,!(node_modules)/**}/*.test.js' --reporter mochawesome --reporter-options reportDir=docs/tests,reportFilename=index,showHooks=always",
-    "test": "nyc mocha './{,!(node_modules)/**}/*.test.js'"
+    "generate-doc-tests": "mocha './{,!(node_modules)/**}/*.test.js' --opts ./test/mocha.opts --reporter mochawesome --reporter-options reportDir=docs/tests,reportFilename=index,showHooks=always",
+    "test": "nyc mocha './{,!(node_modules)/**}/*.test.js' --opts ./test/mocha.opts"
   },
   "dependencies": {
     "@superhero/websocket": "1.1.0",
     "@superhero/debug": "1.1.4"
   },
   "devDependencies": {
+    "@superhero/core": "0.13.2",
     "mocha": "5.1.0",
     "mochawesome": "3.0.2",
     "chai": "4.1.2",

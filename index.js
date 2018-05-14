@@ -21,9 +21,8 @@ module.exports = class
   async dispatch(event, context, data)
   {
     const
-    request = Object.freeze({ name:event, data }),
-    input   = { path:event },
-    route   = Object.freeze(await this.router.findRoute(input)),
+    input   = Object.freeze({ event, data }),
+    route   = Object.freeze(await this.router.findRoute({ path:event })),
     session = {}
 
     if(!route.endpoint)
@@ -35,9 +34,9 @@ module.exports = class
 
     function * chain(Dispatcher)
     {
-      const dispatcher = new Dispatcher(request, route, session)
-      for(const [event, data, toAll] of dispatcher.dispatch(dispatch))
-        yield [event, data, toAll]
+      const dispatcher = new Dispatcher(input, route, session)
+      for(const args of dispatcher.dispatch(dispatch))
+        yield [...args]
     }
 
     function * dispatch()
@@ -45,8 +44,8 @@ module.exports = class
       if(route.dispatchers.length)
       {
         const dispatcher = route.dispatchers.shift()
-        for(const [event, data, toAll] of chain(dispatcher))
-          yield [event, data, toAll]
+        for(const args of chain(dispatcher))
+          yield [...args]
       }
     }
 

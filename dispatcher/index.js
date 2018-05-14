@@ -2,9 +2,9 @@ const ERR_NOT_IMPLEMENTED = require('./error/not-implemented')
 
 module.exports = class
 {
-  constructor(event, route, session)
+  constructor(input, route, session)
   {
-    this.event    = event
+    this.input    = input
     this.route    = route
     this.session  = session
   }

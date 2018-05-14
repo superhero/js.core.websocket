@@ -13,7 +13,9 @@ module.exports = class extends require('.')
       case 'create'   :
       case 'retrieve' :
       case 'update'   :
-      case 'delete'   : yield this[action](...a)
+      case 'delete'   :
+        for(const args of this[action](...a))
+          yield [...args]
 
       default : throw new ERR_UNKNOWN_ACTION (action)
     }
