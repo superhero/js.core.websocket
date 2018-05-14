@@ -4,7 +4,7 @@ Licence: [MIT](https://opensource.org/licenses/MIT)
 
 ---
 
-[![npm version](https://badge.fury.io/js/%40superhero%2Fcore.svg)](https://badge.fury.io/js/%40superhero%2Fcore)
+[![npm version](https://badge.fury.io/js/%40superhero%2Fcore.websocket.svg)](https://badge.fury.io/js/%40superhero%2Fcore)
 
 This is an addon module that implements the [superhero/websocket](https://github.com/superhero/js.websocket) module with the [superhero/core](https://github.com/superhero/js.core) module. This addon will apply an additional option to the server, eg: `websocket`. As websockets are bidirectional, a different multiplex dispatcher approach is required.
 

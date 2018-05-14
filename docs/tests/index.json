@@ -5,9 +5,9 @@
     "passes": 4,
     "pending": 0,
     "failures": 0,
-    "start": "2018-05-14T15:52:56.931Z",
-    "end": "2018-05-14T15:52:57.008Z",
-    "duration": 77,
+    "start": "2018-05-14T16:04:54.588Z",
+    "end": "2018-05-14T16:04:54.664Z",
+    "duration": 76,
     "testsRegistered": 4,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -19,7 +19,7 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "ddfd1f74-1118-4b2b-a587-478e29a1a14e",
+    "uuid": "a2f9c74a-ea5d-44f6-bb6b-4d1c734fba46",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "a49a6f57-416a-4f42-9869-89d1416bea22",
+        "uuid": "8a7a1715-13bc-469c-841e-f5cdb0494c3b",
         "title": "websocket integration tests",
         "fullFile": "/home/erik/Projects/@superhero/js.core.websocket/test/integration.test.js",
         "file": "/test/integration.test.js",
@@ -37,14 +37,14 @@
             "title": "\"before each\" hook",
             "fullTitle": "websocket integration tests \"before each\" hook",
             "timedOut": false,
-            "duration": 0,
+            "duration": 1,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "const\nbootstrap = require('../bootstrap'),\nport      = 9001\ncontext(this, { title:'routes', value:routes})\ncore.bootstrap(bootstrap).then((core) =>\n{\n  const debug = false\n  client = new WsClient({ debug })\n  server = core.server('websocket', routes, { debug })\n  server.on('listening', async () =>\n  {\n    await client.connect(port)\n    done()\n  })\n  server.listen(port)\n})",
             "err": {},
             "isRoot": false,
-            "uuid": "3bd6092f-a429-4aa2-a8fa-2d3305ac9a45",
+            "uuid": "bfd29b73-e3f6-441f-9788-2a9f8b4d538f",
             "isHook": true,
             "skipped": false
           }
@@ -54,14 +54,14 @@
             "title": "\"after each\" hook",
             "fullTitle": "websocket integration tests \"after each\" hook",
             "timedOut": false,
-            "duration": 0,
+            "duration": 1,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "client.socket.end()\nserver.close()",
             "err": {},
             "isRoot": false,
-            "uuid": "4a5064c7-bd81-4b2c-9399-bce63d716b8e",
+            "uuid": "dff6427c-4949-4904-b69a-1a936890b663",
             "isHook": true,
             "skipped": false
           }
@@ -71,7 +71,7 @@
             "title": "websocket responding",
             "fullTitle": "websocket integration tests websocket responding",
             "timedOut": false,
-            "duration": 19,
+            "duration": 18,
             "state": "passed",
             "speed": "fast",
             "pass": true,
@@ -81,7 +81,7 @@
             "code": "const\nevt   = 'reflect',\ndata  = 'foobar'\nclient.events.on(evt, (dto) =>\n{\n  expect(dto).to.be.equal(data)\n  done()\n})\nclient.emit(evt, data)",
             "err": {},
             "isRoot": false,
-            "uuid": "4fd59b98-9313-4bc7-8356-20404974cc2a",
+            "uuid": "4f9621ac-2a8d-4b31-9e1c-3985324b57f0",
             "isHook": false,
             "skipped": false
           },
@@ -89,7 +89,7 @@
             "title": "websocket responding with multiple responses",
             "fullTitle": "websocket integration tests websocket responding with multiple responses",
             "timedOut": false,
-            "duration": 39,
+            "duration": 40,
             "state": "passed",
             "speed": "medium",
             "pass": true,
@@ -99,7 +99,7 @@
             "code": "const evt = 'multi'\nlet i = 0\nclient.events.on(evt, (dto) =>\n{\n  ++i === 3\n  && done()\n})\nclient.emit(evt)",
             "err": {},
             "isRoot": false,
-            "uuid": "690bd27c-e946-41f2-8386-b9fe272c7a99",
+            "uuid": "cb082128-e2a0-423f-98c3-5999ae6bd98c",
             "isHook": false,
             "skipped": false
           },
@@ -117,7 +117,7 @@
             "code": "const evt = 'middleware'\nclient.events.on(evt, (dto) =>\n{\n  expect(dto.wentThroughMddleware).to.be.equal(true)\n  done()\n})\nclient.emit(evt)",
             "err": {},
             "isRoot": false,
-            "uuid": "563016d0-50cd-4b3d-9900-a321dba010d4",
+            "uuid": "85bde94b-c999-4e8f-a585-d18b1555149b",
             "isHook": false,
             "skipped": false
           },
@@ -125,7 +125,7 @@
             "title": "websocket not implemented response with an error",
             "fullTitle": "websocket integration tests websocket not implemented response with an error",
             "timedOut": false,
-            "duration": 1,
+            "duration": 0,
             "state": "passed",
             "speed": "fast",
             "pass": true,
@@ -135,22 +135,22 @@
             "code": "client.events.on('error', (dto) => done())\nclient.emit('not-implemented')",
             "err": {},
             "isRoot": false,
-            "uuid": "1060c15b-df6f-4400-bef0-3e4874ca22f8",
+            "uuid": "cabcd8d4-04a1-425e-b700-19fba0a869d6",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "4fd59b98-9313-4bc7-8356-20404974cc2a",
-          "690bd27c-e946-41f2-8386-b9fe272c7a99",
-          "563016d0-50cd-4b3d-9900-a321dba010d4",
-          "1060c15b-df6f-4400-bef0-3e4874ca22f8"
+          "4f9621ac-2a8d-4b31-9e1c-3985324b57f0",
+          "cb082128-e2a0-423f-98c3-5999ae6bd98c",
+          "85bde94b-c999-4e8f-a585-d18b1555149b",
+          "cabcd8d4-04a1-425e-b700-19fba0a869d6"
         ],
         "failures": [],
         "pending": [],
         "skipped": [],
-        "duration": 60,
+        "duration": 59,
         "root": false,
         "rootEmpty": false,
         "_timeout": 2000
