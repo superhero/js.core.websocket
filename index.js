@@ -4,7 +4,7 @@ Websocket = require('@superhero/websocket')
 
 module.exports = class
 {
-  constructor(router, options)
+  constructor(options, router)
   {
     this.config = Object.assign({ prefix:'websocket server:' }, options)
     this.router = router
