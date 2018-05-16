@@ -33,7 +33,7 @@ describe('websocket integration tests', async () =>
     const
     bootstrap = require('../bootstrap'),
     port      = 9001
-    context(this, { title:'routes', value:routes})
+    context(this, { title:'routes', value:routes })
     core.bootstrap(bootstrap).then((core) =>
     {
       const debug = false
