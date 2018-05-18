@@ -4,11 +4,12 @@ Websocket = require('@superhero/websocket')
 
 module.exports = class
 {
-  constructor(options, router)
+  constructor(options, router, locator)
   {
-    this.config = Object.assign({ prefix:'websocket server:' }, options)
-    this.router = router
-    this.debug  = new Debug(this.config)
+    this.config   = Object.assign({ prefix:'websocket server:' }, options)
+    this.router   = router
+    this.debug    = new Debug(this.config)
+    this.locator  = locator
   }
 
   createServer(options)
@@ -23,7 +24,8 @@ module.exports = class
     const
     input   = Object.freeze({ event, data }),
     route   = Object.freeze(await this.router.findRoute({ path:event })),
-    session = {}
+    session = {},
+    locator = Object.freeze(this.locator)
 
     if(!route.endpoint)
     {
@@ -34,7 +36,7 @@ module.exports = class
 
     function * chain(Dispatcher)
     {
-      const dispatcher = new Dispatcher(input, route, session)
+      const dispatcher = new Dispatcher(input, route, session, locator)
       for(const args of dispatcher.dispatch(dispatch))
         yield [...args]
     }
