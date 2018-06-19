@@ -3,7 +3,7 @@ describe('websocket integration tests', async () =>
   const
   expect    = require('chai').expect,
   context   = require('mochawesome/addContext'),
-  core      = require('@superhero/core'),
+  Core      = require('@superhero/core'),
   WsClient  = require('@superhero/websocket/client'),
   routes    =
   [
@@ -31,12 +31,15 @@ describe('websocket integration tests', async () =>
   beforeEach(function(done)
   {
     const
-    bootstrap = require('../bootstrap'),
-    port      = 9001
+    bootstrap = { [__dirname + '/../']:undefined },
+    port      = 9001,
+    debug     = false,
+    core      = new Core({ debug })
+
     context(this, { title:'routes', value:routes })
+
     core.bootstrap(bootstrap).then((core) =>
     {
-      const debug = false
       client = new WsClient({ debug })
       server = core.server('websocket', routes, { debug })
       server.on('listening', async () =>

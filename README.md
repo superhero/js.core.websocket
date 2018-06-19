@@ -79,9 +79,9 @@ const
 config    = require('./config'),
 core      = require('@superhero/core'),
 bootstrap =
-[
-  require('@superhero/core.websocket/bootstrap')
-]
+{
+  '@superhero/core.websocket':undefined
+}
 
 core.bootstrap(bootstrap).then((core) =>
   core.server('websocket', config.routes).listen(80))

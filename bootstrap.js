@@ -1,5 +1,7 @@
-module.exports = (config_core) =>
+module.exports = async function()
 {
-  config_core.server.ws         = __dirname
-  config_core.server.websocket  = __dirname
+  const config = await this.locator.load('config')
+
+  config.server.ws         = __dirname
+  config.server.websocket  = __dirname
 }
