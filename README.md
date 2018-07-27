@@ -83,7 +83,7 @@ const
 config  = require('./config'),
 core    = require('@superhero/core')
 
-core.bootstrap().then(() => core.server('websocket', config.routes).listen(80))
+core.bootstrap(config.bootstrap).then(() => core.server('websocket', config.routes).listen(80))
 ```
 
 #### `controller/foobar.js`
