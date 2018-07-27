@@ -21,7 +21,7 @@
     "@superhero/debug": "1.1.4"
   },
   "devDependencies": {
-    "@superhero/core": "0.15.3",
+    "@superhero/core": "0.16.0",
     "mocha": "5.1.0",
     "mochawesome": "3.0.2",
     "chai": "4.1.2",

@@ -1,4 +1,4 @@
-module.exports = async function()
+module.exports = async function(config)
 {
   const config = await this.locator.load('config')
 

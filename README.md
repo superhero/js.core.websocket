@@ -61,6 +61,10 @@ App
 ```js
 module.exports =
 {
+  bootstrap:
+  {
+    '@superhero/core.websocket':{}
+  },
   routes:
   [
     {
@@ -76,15 +80,10 @@ module.exports =
 
 ```js
 const
-config    = require('./config'),
-core      = require('@superhero/core'),
-bootstrap =
-{
-  '@superhero/core.websocket':undefined
-}
+config  = require('./config'),
+core    = require('@superhero/core')
 
-core.bootstrap(bootstrap).then((core) =>
-  core.server('websocket', config.routes).listen(80))
+core.bootstrap().then(() => core.server('websocket', config.routes).listen(80))
 ```
 
 #### `controller/foobar.js`
