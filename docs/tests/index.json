@@ -5,8 +5,8 @@
     "passes": 4,
     "pending": 0,
     "failures": 0,
-    "start": "2018-07-27T14:44:22.386Z",
-    "end": "2018-07-27T14:44:22.463Z",
+    "start": "2018-07-30T10:40:38.431Z",
+    "end": "2018-07-30T10:40:38.508Z",
     "duration": 77,
     "testsRegistered": 4,
     "passPercent": 100,
@@ -19,7 +19,7 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "6f0fa66b-1c93-4a7c-8218-c4064c1622c1",
+    "uuid": "19083468-c343-45c1-9d4e-6199f5f51d79",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "6d418955-a7ef-4d5f-9a8f-0fc6cf841f1b",
+        "uuid": "f3f92297-95eb-412f-98c4-59734e4ef385",
         "title": "websocket integration tests",
         "fullFile": "/home/erik/Projects/@superhero/js.core.websocket/test/integration.test.js",
         "file": "/test/integration.test.js",
@@ -44,7 +44,7 @@
             "code": "const\nbootstrap = { [__dirname + '/../']:undefined },\nport      = 9001,\ndebug     = false,\ncore      = new Core({ debug })\ncontext(this, { title:'routes', value:routes })\ncore.bootstrap(bootstrap).then((core) =>\n{\n  client = new WsClient({ debug })\n  server = core.server('websocket', routes, { debug })\n  server.on('listening', async () =>\n  {\n    await client.connect(port)\n    done()\n  })\n  server.listen(port)\n})",
             "err": {},
             "isRoot": false,
-            "uuid": "3b73bb5b-3933-40ba-b33b-9d693061cb75",
+            "uuid": "2460208a-32c8-4e25-a21e-4c633561e8bb",
             "isHook": true,
             "skipped": false
           }
@@ -61,7 +61,7 @@
             "code": "client.socket.end()\nserver.close()",
             "err": {},
             "isRoot": false,
-            "uuid": "b113ac27-ff85-4324-88fd-057ae60cc44b",
+            "uuid": "8c59cf71-7fd6-4408-86ea-57f8f8dd2351",
             "isHook": true,
             "skipped": false
           }
@@ -81,7 +81,7 @@
             "code": "const\nevt   = 'reflect',\ndata  = 'foobar'\nclient.events.on(evt, (dto) =>\n{\n  expect(dto).to.be.equal(data)\n  done()\n})\nclient.emit(evt, data)",
             "err": {},
             "isRoot": false,
-            "uuid": "785f463a-0516-4ef0-9d9e-9b499c5a1371",
+            "uuid": "33987273-b6fa-48ca-af53-09fe54d8a283",
             "isHook": false,
             "skipped": false
           },
@@ -89,9 +89,9 @@
             "title": "websocket responding with multiple responses",
             "fullTitle": "websocket integration tests websocket responding with multiple responses",
             "timedOut": false,
-            "duration": 40,
+            "duration": 37,
             "state": "passed",
-            "speed": "medium",
+            "speed": "fast",
             "pass": true,
             "fail": false,
             "pending": false,
@@ -99,7 +99,7 @@
             "code": "const evt = 'multi'\nlet i = 0\nclient.events.on(evt, (dto) =>\n{\n  ++i === 3\n  && done()\n})\nclient.emit(evt)",
             "err": {},
             "isRoot": false,
-            "uuid": "fcd22e84-cdcb-481f-9bd5-f0f1ba5a3429",
+            "uuid": "53221be2-9b2c-43b9-80b3-d7b400997425",
             "isHook": false,
             "skipped": false
           },
@@ -117,7 +117,7 @@
             "code": "const evt = 'middleware'\nclient.events.on(evt, (dto) =>\n{\n  expect(dto.wentThroughMddleware).to.be.equal(true)\n  done()\n})\nclient.emit(evt)",
             "err": {},
             "isRoot": false,
-            "uuid": "12f5397b-ecf7-49c0-894f-3485fdadb8d2",
+            "uuid": "c76e1594-d7d7-4d7b-a167-3fe5bf86a59c",
             "isHook": false,
             "skipped": false
           },
@@ -135,22 +135,22 @@
             "code": "client.events.on('error', (dto) => done())\nclient.emit('not-implemented')",
             "err": {},
             "isRoot": false,
-            "uuid": "226b0f83-fd76-4658-a03f-537580e5ac58",
+            "uuid": "ba113398-27f0-47ef-b5f4-20f53b498e33",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "785f463a-0516-4ef0-9d9e-9b499c5a1371",
-          "fcd22e84-cdcb-481f-9bd5-f0f1ba5a3429",
-          "12f5397b-ecf7-49c0-894f-3485fdadb8d2",
-          "226b0f83-fd76-4658-a03f-537580e5ac58"
+          "33987273-b6fa-48ca-af53-09fe54d8a283",
+          "53221be2-9b2c-43b9-80b3-d7b400997425",
+          "c76e1594-d7d7-4d7b-a167-3fe5bf86a59c",
+          "ba113398-27f0-47ef-b5f4-20f53b498e33"
         ],
         "failures": [],
         "pending": [],
         "skipped": [],
-        "duration": 60,
+        "duration": 57,
         "root": false,
         "rootEmpty": false,
         "_timeout": 2000
