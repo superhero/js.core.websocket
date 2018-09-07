@@ -24,7 +24,7 @@ module.exports = class
     const
     input   = Object.freeze({ event, data }),
     route   = Object.freeze(await this.router.findRoute({ path:event })),
-    session = {},
+    session = { emit:context.emit },
     locator = Object.freeze(this.locator)
 
     if(!route.endpoint)
@@ -34,32 +34,29 @@ module.exports = class
       return
     }
 
-    function * chain(Dispatcher)
+    async function chain(Dispatcher)
     {
       const dispatcher = new Dispatcher(input, route, session, locator)
-      for(const args of dispatcher.dispatch(dispatch))
-        yield [...args]
+      await dispatcher.dispatch(dispatch)
     }
 
-    function * dispatch()
+    let n = 0
+    async function dispatch()
     {
-      if(route.dispatchers.length)
+      if(n < route.dispatchers.length)
       {
-        const dispatcher = route.dispatchers.shift()
-        for(const args of chain(dispatcher))
-          yield [...args]
+        await chain(route.dispatchers[n++])
       }
     }
 
     try
     {
-      for(const [event, data, toAll] of dispatch())
-        context.emit(event, data, toAll)
+      await dispatch()
     }
     catch(error)
     {
       this.debug.log('event:', event, 'data:', data, 'error:', error)
-      context.emit('error')
+      context.emit('error', error.code)
     }
   }
 }

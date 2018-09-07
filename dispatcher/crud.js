@@ -4,7 +4,7 @@ ERR_UNKNOWN_ACTION  = require('./error/unknown-action')
 
 module.exports = class extends require('.')
 {
-  * dispatch(...a)
+  dispatch(...a)
   {
     const action = this.event.name.toLowerCase().split('.').pop()
 
@@ -21,8 +21,8 @@ module.exports = class extends require('.')
     }
   }
 
-  * create()  { throw new ERR_NOT_IMPLEMENTED }
-  * retrieve(){ throw new ERR_NOT_IMPLEMENTED }
-  * update()  { throw new ERR_NOT_IMPLEMENTED }
-  * delete()  { throw new ERR_NOT_IMPLEMENTED }
+  create()  { throw new ERR_NOT_IMPLEMENTED }
+  retrieve(){ throw new ERR_NOT_IMPLEMENTED }
+  update()  { throw new ERR_NOT_IMPLEMENTED }
+  delete()  { throw new ERR_NOT_IMPLEMENTED }
 }

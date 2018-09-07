@@ -4,8 +4,8 @@ Dispatcher = require(`${root}/dispatcher`)
 
 module.exports = class extends Dispatcher
 {
-  * dispatch()
+  dispatch()
   {
-    yield [this.input.event, this.input.data]
+    this.session.emit(this.input.event, this.input.data)
   }
 }

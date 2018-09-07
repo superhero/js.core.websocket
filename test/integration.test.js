@@ -16,11 +16,6 @@ describe('websocket integration tests', async () =>
       policy    : 'multi'
     },
     {
-      chain     : 'controller/middleware',
-      endpoint  : 'controller/obj',
-      policy    : 'middleware'
-    },
-    {
       endpoint  : 'controller/not-implemented',
       policy    : 'not-implemented'
     }
@@ -78,17 +73,6 @@ describe('websocket integration tests', async () =>
     {
       ++i === 3
       && done()
-    })
-    client.emit(evt)
-  })
-
-  it('websocket middleware works as expected', (done) =>
-  {
-    const evt = 'middleware'
-    client.events.on(evt, (dto) =>
-    {
-      expect(dto.wentThroughMddleware).to.be.equal(true)
-      done()
     })
     client.emit(evt)
   })

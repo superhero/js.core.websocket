@@ -10,7 +10,7 @@ module.exports = class
     this.locator  = locator
   }
 
-  * dispatch()
+  dispatch()
   {
     throw new ERR_NOT_IMPLEMENTED
   }

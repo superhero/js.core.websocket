@@ -93,9 +93,9 @@ const Dispatcher = require('@superhero/core.websocket/dispatcher')
 
 module.exports = class extends Dispatcher
 {
-  * dispatch()
+  async dispatch()
   {
-    yield [this.input.event, this.input.data]
+    await this.session.emit(this.input.event, this.input.data)
   }
 }
 ```
@@ -109,15 +109,11 @@ const Dispatcher = require('@superhero/core.websocket/dispatcher')
 // Inherits the same interface and functionality as an endpoint dispatcher
 module.exports = class extends Dispatcher
 {
-  * dispatch(next)
+  async dispatch(next)
   {
     console.log('received', new Date().toISOString())
 
-    for(const args of next())
-    {
-      console.log('responding', new Date().toISOString())
-      yield [...args]
-    }
+    await next()
 
     console.log('done', new Date().toISOString())
   }

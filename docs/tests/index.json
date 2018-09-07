@@ -1,14 +1,14 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 4,
-    "passes": 4,
+    "tests": 3,
+    "passes": 3,
     "pending": 0,
     "failures": 0,
-    "start": "2018-07-30T10:40:38.431Z",
-    "end": "2018-07-30T10:40:38.508Z",
-    "duration": 77,
-    "testsRegistered": 4,
+    "start": "2018-09-07T15:52:26.215Z",
+    "end": "2018-09-07T15:52:26.290Z",
+    "duration": 75,
+    "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -19,7 +19,7 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "19083468-c343-45c1-9d4e-6199f5f51d79",
+    "uuid": "36818b98-c5fa-40ec-8e1d-50f8213319c7",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "f3f92297-95eb-412f-98c4-59734e4ef385",
+        "uuid": "d0bb5f5a-6a0a-4d4d-b3de-58121b8b771c",
         "title": "websocket integration tests",
         "fullFile": "/home/erik/Projects/@superhero/js.core.websocket/test/integration.test.js",
         "file": "/test/integration.test.js",
@@ -44,7 +44,7 @@
             "code": "const\nbootstrap = { [__dirname + '/../']:undefined },\nport      = 9001,\ndebug     = false,\ncore      = new Core({ debug })\ncontext(this, { title:'routes', value:routes })\ncore.bootstrap(bootstrap).then((core) =>\n{\n  client = new WsClient({ debug })\n  server = core.server('websocket', routes, { debug })\n  server.on('listening', async () =>\n  {\n    await client.connect(port)\n    done()\n  })\n  server.listen(port)\n})",
             "err": {},
             "isRoot": false,
-            "uuid": "2460208a-32c8-4e25-a21e-4c633561e8bb",
+            "uuid": "f0ce0c6a-809a-4f14-a711-dc824ff1be1b",
             "isHook": true,
             "skipped": false
           }
@@ -61,7 +61,7 @@
             "code": "client.socket.end()\nserver.close()",
             "err": {},
             "isRoot": false,
-            "uuid": "8c59cf71-7fd6-4408-86ea-57f8f8dd2351",
+            "uuid": "b28baacf-3240-4bb0-9914-ba528d598eca",
             "isHook": true,
             "skipped": false
           }
@@ -71,17 +71,17 @@
             "title": "websocket responding",
             "fullTitle": "websocket integration tests websocket responding",
             "timedOut": false,
-            "duration": 18,
+            "duration": 19,
             "state": "passed",
             "speed": "fast",
             "pass": true,
             "fail": false,
             "pending": false,
-            "context": "{\n  \"title\": \"routes\",\n  \"value\": [\n    {\n      \"endpoint\": \"controller/reflect\",\n      \"policy\": \"reflect\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/multi\",\n      \"policy\": \"multi\",\n      \"args\": {}\n    },\n    {\n      \"chain\": \"controller/middleware\",\n      \"endpoint\": \"controller/obj\",\n      \"policy\": \"middleware\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/not-implemented\",\n      \"policy\": \"not-implemented\",\n      \"args\": {}\n    }\n  ]\n}",
+            "context": "{\n  \"title\": \"routes\",\n  \"value\": [\n    {\n      \"endpoint\": \"controller/reflect\",\n      \"policy\": \"reflect\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/multi\",\n      \"policy\": \"multi\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/not-implemented\",\n      \"policy\": \"not-implemented\",\n      \"args\": {}\n    }\n  ]\n}",
             "code": "const\nevt   = 'reflect',\ndata  = 'foobar'\nclient.events.on(evt, (dto) =>\n{\n  expect(dto).to.be.equal(data)\n  done()\n})\nclient.emit(evt, data)",
             "err": {},
             "isRoot": false,
-            "uuid": "33987273-b6fa-48ca-af53-09fe54d8a283",
+            "uuid": "769d5535-44be-40cd-9881-1e9df0f9adb6",
             "isHook": false,
             "skipped": false
           },
@@ -95,29 +95,11 @@
             "pass": true,
             "fail": false,
             "pending": false,
-            "context": "{\n  \"title\": \"routes\",\n  \"value\": [\n    {\n      \"endpoint\": \"controller/reflect\",\n      \"policy\": \"reflect\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/multi\",\n      \"policy\": \"multi\",\n      \"args\": {}\n    },\n    {\n      \"chain\": \"controller/middleware\",\n      \"endpoint\": \"controller/obj\",\n      \"policy\": \"middleware\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/not-implemented\",\n      \"policy\": \"not-implemented\",\n      \"args\": {}\n    }\n  ]\n}",
+            "context": "{\n  \"title\": \"routes\",\n  \"value\": [\n    {\n      \"endpoint\": \"controller/reflect\",\n      \"policy\": \"reflect\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/multi\",\n      \"policy\": \"multi\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/not-implemented\",\n      \"policy\": \"not-implemented\",\n      \"args\": {}\n    }\n  ]\n}",
             "code": "const evt = 'multi'\nlet i = 0\nclient.events.on(evt, (dto) =>\n{\n  ++i === 3\n  && done()\n})\nclient.emit(evt)",
             "err": {},
             "isRoot": false,
-            "uuid": "53221be2-9b2c-43b9-80b3-d7b400997425",
-            "isHook": false,
-            "skipped": false
-          },
-          {
-            "title": "websocket middleware works as expected",
-            "fullTitle": "websocket integration tests websocket middleware works as expected",
-            "timedOut": false,
-            "duration": 1,
-            "state": "passed",
-            "speed": "fast",
-            "pass": true,
-            "fail": false,
-            "pending": false,
-            "context": "{\n  \"title\": \"routes\",\n  \"value\": [\n    {\n      \"endpoint\": \"controller/reflect\",\n      \"policy\": \"reflect\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/multi\",\n      \"policy\": \"multi\",\n      \"args\": {}\n    },\n    {\n      \"chain\": \"controller/middleware\",\n      \"endpoint\": \"controller/obj\",\n      \"policy\": \"middleware\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/not-implemented\",\n      \"policy\": \"not-implemented\",\n      \"args\": {}\n    }\n  ]\n}",
-            "code": "const evt = 'middleware'\nclient.events.on(evt, (dto) =>\n{\n  expect(dto.wentThroughMddleware).to.be.equal(true)\n  done()\n})\nclient.emit(evt)",
-            "err": {},
-            "isRoot": false,
-            "uuid": "c76e1594-d7d7-4d7b-a167-3fe5bf86a59c",
+            "uuid": "d81d17d9-2511-466e-9014-d69f860c4df7",
             "isHook": false,
             "skipped": false
           },
@@ -131,21 +113,20 @@
             "pass": true,
             "fail": false,
             "pending": false,
-            "context": "{\n  \"title\": \"routes\",\n  \"value\": [\n    {\n      \"endpoint\": \"controller/reflect\",\n      \"policy\": \"reflect\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/multi\",\n      \"policy\": \"multi\",\n      \"args\": {}\n    },\n    {\n      \"chain\": \"controller/middleware\",\n      \"endpoint\": \"controller/obj\",\n      \"policy\": \"middleware\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/not-implemented\",\n      \"policy\": \"not-implemented\",\n      \"args\": {}\n    }\n  ]\n}",
+            "context": "{\n  \"title\": \"routes\",\n  \"value\": [\n    {\n      \"endpoint\": \"controller/reflect\",\n      \"policy\": \"reflect\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/multi\",\n      \"policy\": \"multi\",\n      \"args\": {}\n    },\n    {\n      \"endpoint\": \"controller/not-implemented\",\n      \"policy\": \"not-implemented\",\n      \"args\": {}\n    }\n  ]\n}",
             "code": "client.events.on('error', (dto) => done())\nclient.emit('not-implemented')",
             "err": {},
             "isRoot": false,
-            "uuid": "ba113398-27f0-47ef-b5f4-20f53b498e33",
+            "uuid": "4be15d91-615b-4991-8c5d-978d8d057674",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "33987273-b6fa-48ca-af53-09fe54d8a283",
-          "53221be2-9b2c-43b9-80b3-d7b400997425",
-          "c76e1594-d7d7-4d7b-a167-3fe5bf86a59c",
-          "ba113398-27f0-47ef-b5f4-20f53b498e33"
+          "769d5535-44be-40cd-9881-1e9df0f9adb6",
+          "d81d17d9-2511-466e-9014-d69f860c4df7",
+          "4be15d91-615b-4991-8c5d-978d8d057674"
         ],
         "failures": [],
         "pending": [],
