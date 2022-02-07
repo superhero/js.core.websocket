@@ -13,7 +13,7 @@ class Server
 
   bootstrap()
   {
-    for(routeKey in this.routes || {})
+    for(const routeKey in this.routes || {})
     {
       const route = this.routes[routeKey]
 
