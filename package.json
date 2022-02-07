@@ -1,6 +1,6 @@
 {
   "name": "@superhero/core.websocket",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Addon module to the @superhero/core module, adds a websocket server option",
   "repository": "git@github.com:superhero/js.core.websocket.git",
   "main": "index.js",

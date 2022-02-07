@@ -20,7 +20,7 @@ class ServerLocator extends LocatorConstituent
       routes        = configuration.find('websocket/routes'),
       websocket     = new SuperheroWebsocket(options)
 
-    return new Server(websocket, routes, schema)
+    return new Server(websocket, routes, schema, this.locator)
   }
 }
 

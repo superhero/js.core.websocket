@@ -3,8 +3,9 @@
  */
 class ServerDispatcher
 {
-  constructor(route, session, dto)
+  constructor(locator, route, session, dto)
   {
+    this.locator  = locator
     this.route    = route
     this.session  = session
     this.dto      = dto

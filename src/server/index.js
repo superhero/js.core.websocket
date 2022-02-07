@@ -3,11 +3,12 @@
  */
 class Server
 {
-  constructor(websocket, routes, schema)
+  constructor(websocket, routes, schema, locator)
   {
     this.websocket  = websocket
     this.routes     = routes
     this.schema     = schema
+    this.locator    = locator
   }
 
   bootstrap()
@@ -40,7 +41,7 @@ class Server
           try
           {
             const Endpoint = require(route.endpoint)
-            endpoint = new Endpoint(route, session, dto)
+            endpoint = new Endpoint(this.locator, route, session, dto)
           }
           catch(previousError) 
           {
