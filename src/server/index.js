@@ -3,11 +3,12 @@
  */
 class Server
 {
-  constructor(websocket, routes, schema, locator)
+  constructor(websocket, routes, schema, path, locator)
   {
     this.websocket  = websocket
     this.routes     = routes
     this.schema     = schema
+    this.path       = path
     this.locator    = locator
   }
 
@@ -40,7 +41,7 @@ class Server
   
           try
           {
-            const Endpoint = require(route.endpoint)
+            const Endpoint = require(this.path.main.dirname + '/' + route.endpoint)
             endpoint = new Endpoint(this.locator, route, session, dto)
           }
           catch(previousError) 

@@ -18,9 +18,10 @@ class ServerLocator extends LocatorConstituent
       schema        = this.locator.locate('core/schema/composer'),
       options       = configuration.find('websocket/gateway'),
       routes        = configuration.find('websocket/routes'),
+      path          = this.locator.locate('core/path'),
       websocket     = new SuperheroWebsocket(options)
 
-    return new Server(websocket, routes, schema, this.locator)
+    return new Server(websocket, routes, schema, path, this.locator)
   }
 }
 
