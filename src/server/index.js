@@ -3,73 +3,88 @@
  */
 class Server
 {
-  constructor(websocket, routes, schema, path, locator)
+  constructor(websocket, routes, schema, path, deepmerge, dispatcherChain, locator)
   {
-    this.websocket  = websocket
-    this.routes     = routes
-    this.schema     = schema
-    this.path       = path
-    this.locator    = locator
+    this.websocket        = websocket
+    this.routes           = routes
+    this.schema           = schema
+    this.path             = path
+    this.deepmerge        = deepmerge
+    this.dispatcherChain  = dispatcherChain
+    this.locator          = locator
   }
 
   bootstrap()
   {
+    const inheritedRoute = {}
+
     for(const routeKey in this.routes || {})
     {
-      const route = this.routes[routeKey]
+      const route = this.deepmerge.mergeInclusive({}, inheritedRoute, this.routes[routeKey])
 
-      this.websocket.events.on(route.event, async (session, dto) =>
+      if(route.event && route.endpoint)
       {
-        try
+        this.websocket.events.on(route.event, async (session, dto) =>
         {
-          if(route.input)
+          try
           {
+            if(route.input)
+            {
+              try
+              {
+                dto = this.schema.compose(route.input, dto)
+              }
+              catch(previousError)
+              {
+                const error = new Error('could not compose the input model')
+                error.chain = { previousError, route, dto }
+                error.code  = 'E_WEBSOCKET_INPUT_SCHEMA'
+                throw error
+              }
+            }
+
+            const chain = []
+
             try
             {
-              dto = this.schema.compose(route.input, dto)
+              for(const path of [...(route.middleware || []), route.endpoint])
+              {
+                const Dispatcher = require(this.path.main.dirname + '/' + path)
+                dispatcher = new Dispatcher(this.locator, route, session, dto)
+                chain.push(dispatcher)
+              }
             }
-            catch(previousError)
+            catch(previousError) 
             {
-              const error = new Error('could not compose the input model')
+              const error = new Error('could not instanciate the endpoint')
               error.chain = { previousError, route, dto }
-              error.code  = 'E_WEBSOCKET_INPUT_SCHEMA'
+              error.code  = 'E_WEBSOCKET_ENDPOINT_INSTANCIATE'
+              throw error
+            }
+    
+            try
+            {
+              await this.dispatcherChain.dispatch(chain)
+            }
+            catch(previousError) 
+            {
+              const error = new Error('could not dispatch the endpoint')
+              error.chain = { previousError, route, dto }
+              error.code  = 'E_WEBSOCKET_ENDPOINT_DISPATCH'
               throw error
             }
           }
-  
-          let endpoint
-  
-          try
+          catch(error)
           {
-            const Endpoint = require(this.path.main.dirname + '/' + route.endpoint)
-            endpoint = new Endpoint(this.locator, route, session, dto)
+            await session.emit('websocket.server.error', error)
+            session.socket.destroy()
           }
-          catch(previousError) 
-          {
-            const error = new Error('could not instanciate the endpoint')
-            error.chain = { previousError, route, dto }
-            error.code  = 'E_WEBSOCKET_ENDPOINT_INSTANCIATE'
-            throw error
-          }
-  
-          try
-          {
-            await endpoint.dispatch()
-          }
-          catch(previousError) 
-          {
-            const error = new Error('could not dispatch the endpoint')
-            error.chain = { previousError, route, dto }
-            error.code  = 'E_WEBSOCKET_ENDPOINT_DISPATCH'
-            throw error
-          }
-        }
-        catch(error)
-        {
-          await session.emit('websocket.server.error', error)
-          session.socket.destroy()
-        }
-      })
+        })
+      }
+      else
+      {
+        this.deepmerge.mergeInclusive(inheritedRoute, this.routes[routeKey])
+      }
     }
   }
 
