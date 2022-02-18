@@ -49,8 +49,10 @@ class Server
             {
               for(const path of [...(route.middleware || []), route.endpoint])
               {
-                const Dispatcher = require(this.path.main.dirname + '/' + path)
-                dispatcher = new Dispatcher(this.locator, route, session, dto)
+                const 
+                  Dispatcher = require(this.path.main.dirname + '/' + path),
+                  dispatcher = new Dispatcher(this.locator, route, session, dto)
+
                 chain.push(dispatcher)
               }
             }
